@@ -30,7 +30,7 @@ This project is a simple Wordle-like game built using React. It allows users to 
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/yourusername/wordle-clone.git
+   git clone https://github.com/kotnibhargavi/Wordle-Clone.git
    cd wordle-clone
 2.**Install dependencies:**
 npm install
