@@ -12,19 +12,12 @@ function App() {
   const [guesses, setGuesses] = useState([])
   const [currentGuess, setCurrentGuess] = useState("")
   const [gameStatus, setGameStatus] = useState("playing") // 'playing', 'won', 'lost'
-  const [message, setMessage] = useState("Guess the word!")
+  const [message, setMessage] = useState("")
   const [usedLetters, setUsedLetters] = useState({})
-  const [showInitialMessage, setShowInitialMessage] = useState(true);
-// New state for initial message
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setShowInitialMessage(false);
-  }, 3000); // Message disappears after 3 seconds
-
-  return () => clearTimeout(timer); // Cleanup
-}, []);
-
+  useEffect(() => {
+    setTargetWord(getRandomWord())
+  }, [])
 
   const handleKeyPress = useCallback(
     (key) => {
@@ -66,7 +59,7 @@ useEffect(() => {
         setCurrentGuess(currentGuess + key)
       }
     },
-    [currentGuess, gameStatus, guesses, targetWord, usedLetters]
+    [currentGuess, gameStatus, guesses, targetWord, usedLetters],
   )
 
   useEffect(() => {
@@ -87,27 +80,16 @@ useEffect(() => {
     setGuesses([])
     setCurrentGuess("")
     setGameStatus("playing")
-    setMessage("Guess the word!")
+    setMessage("")
     setUsedLetters({})
-    setShowInitialMessage(true)
-
-    // Hide the initial message after 3 seconds again
-    setTimeout(() => {
-      setShowInitialMessage(false)
-    }, 3000)
   }
 
   return (
     <div className="App">
       <h1>Wordle Clone</h1>
-
-      {showInitialMessage && <div className="message">Guess the word!</div>}
-
-
       <Grid guesses={guesses} currentGuess={currentGuess} targetWord={targetWord} />
       <Keyboard onKeyPress={handleKeyPress} usedLetters={usedLetters} />
-      {message && !showInitialMessage && <Message type={gameStatus} message={message} />}
-      
+      {message && <Message type={gameStatus} message={message} />}
       {gameStatus !== "playing" && (
         <button className="new-game-btn" onClick={resetGame}>
           New Game
@@ -118,3 +100,4 @@ useEffect(() => {
 }
 
 export default App
+
