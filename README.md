@@ -1,7 +1,7 @@
 # Wordle Clone
 
 This project is a simple Wordle-like game built using React. It allows users to guess a 5-letter word within 6 attempts, providing color-coded feedback for each guess.
-### DEMO Link - [wordleclonebhargavi.netlify.app ](https://wordleclonebhargavi.netlify.app/)
+
 
 ## Features
 
